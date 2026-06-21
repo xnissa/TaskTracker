@@ -1,0 +1,75 @@
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 15px;
+  
+  padding: 35px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(255, 105, 135, 0.2);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+::ng-deep .ant-btn-primary {
+  background: #ff4d85 !important;
+  border-color: #ff4d85 !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .ant-btn-primary:hover {
+  background: #ff2a6d !important;
+  border-color: #ff2a6d !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 77, 133, 0.4);
+}
+
+.login-form-forgot {
+  float: right;
+  color: #ff4d85;
+  transition: color 0.3s ease;
+}
+
+.login-form-forgot:hover {
+  color: #ff2a6d;
+}
+
+.login-form-button {
+  width: 100%;
+  height: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.login-form-margin {
+  margin-bottom: 20px;
+}
+
+.login-form a {
+  color: #ff4d85;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.login-form a:hover {
+  color: #ff2a6d;
+}

@@ -1,0 +1,181 @@
+<div class="dashboard-container" style="padding: 24px">
+<h1 class="app-gradient-title" align="center">Task Tracker</h1>
+  <div class="dashboard-header">
+    <nz-row [nzGutter]="16">
+      <nz-col [nzXs]="24" [nzSm]="12" [nzLg]="8" style="margin-bottom: 16px;">
+        <nz-card>
+          <nz-statistic
+            [nzValue]="(projectService.activeProjectsCount() | number)!"
+            [nzTitle]="'Active Tasks'"
+            [nzPrefix]="prefixTplOne"
+            [nzValueStyle]="{ color: '#3f8600' }"
+          ></nz-statistic>
+          <ng-template #prefixTplOne><i nz-icon nzType="rocket"></i></ng-template>
+        </nz-card>
+      </nz-col>
+
+      <nz-col [nzXs]="24" [nzSm]="12" [nzLg]="8" style="margin-bottom: 16px;">
+        <nz-card>
+          <nz-statistic
+            [nzValue]="(projectService.completedProjectsCount() | number)!"
+            [nzTitle]="'Completed Tasks'"
+            [nzPrefix]="prefixTplTwo"
+            [nzValueStyle]="{ color: '#52c41a' }"
+          ></nz-statistic>
+          <ng-template #prefixTplTwo><i nz-icon nzType="check-circle"></i></ng-template>
+        </nz-card>
+      </nz-col>
+
+      <nz-col [nzXs]="24" [nzSm]="12" [nzLg]="8" style="margin-bottom: 16px;">
+        <nz-card>
+          <nz-statistic
+            [nzValue]="(projectService.totalProjectsCount() | number)!"
+            [nzTitle]="'Total Tasks'"
+            [nzPrefix]="prefixTplThree"
+          ></nz-statistic>
+          <ng-template #prefixTplThree><i nz-icon nzType="project"></i></ng-template>
+        </nz-card>
+      </nz-col>
+    </nz-row>
+  </div>
+
+  <div class="table-operations" style="margin-bottom: 16px;">
+    <nz-space [nzWrap]="true">
+      <button *nzSpaceItem nz-button nzType="primary" (click)="showModal()">
+        <i nz-icon nzType="plus"></i> Add Task
+      </button>
+
+      <nz-select *nzSpaceItem [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)" style="width: 150px;">
+        <nz-option nzValue="All" nzLabel="All Statuses"></nz-option>
+        <nz-option nzValue="Active" nzLabel="Active"></nz-option>
+        <nz-option nzValue="Completed" nzLabel="Completed"></nz-option>
+        <nz-option nzValue="On Hold" nzLabel="On Hold"></nz-option>
+        <nz-option nzValue="Cancelled" nzLabel="Cancelled"></nz-option>
+      </nz-select>
+
+      <nz-select *nzSpaceItem [ngModel]="priorityFilter()" (ngModelChange)="priorityFilter.set($event)" style="width: 150px;">
+        <nz-option nzValue="All" nzLabel="All Priorities"></nz-option>
+        <nz-option nzValue="Low" nzLabel="Low"></nz-option>
+        <nz-option nzValue="Medium" nzLabel="Medium"></nz-option>
+        <nz-option nzValue="High" nzLabel="High"></nz-option>
+      </nz-select>
+
+      <nz-input-group *nzSpaceItem [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="Search by name or description..." [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)" />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+
+      <button *nzSpaceItem nz-button nzType="default" (click)="exportToPDF()">
+        <i nz-icon nzType="download"></i> Export PDF
+      </button>
+
+      <button *nzSpaceItem nz-button nzType="default" nzDanger (click)="logout()">
+        <i nz-icon nzType="logout"></i> Logout
+      </button>
+    </nz-space>
+  </div>
+
+  <nz-table #basicTable [nzData]="filteredProjects()" [nzScroll]="{ x: '800px' }" [nzPageSize]="5">
+    <thead>
+      <tr>
+        <th [nzSortFn]="sortName">Task Name</th>
+        <th>Description</th>
+        <th [nzSortFn]="sortDeadline">Deadline</th>
+        <th [nzSortFn]="sortStatus">Status</th>
+        <th [nzSortFn]="sortPriority">Priority</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of basicTable.data; track data.id) {
+        <tr>
+          <td>{{ data.name }}</td>
+          <td>{{ data.description }}</td>
+          <td [ngStyle]="{'color': isOverdue(data.deadline) && data.status !== 'Completed' ? 'red' : 'inherit', 'font-weight': isOverdue(data.deadline) && data.status !== 'Completed' ? 'bold' : 'normal'}">
+            {{ data.deadline | date:'mediumDate' }}
+          </td>
+          <td>
+            <app-status-badge [status]="data.status" (statusClick)="onStatusClick($event)"></app-status-badge>
+          </td>
+          <td>
+            <nz-tag [nzColor]="data.priority === 'High' ? 'red' : data.priority === 'Medium' ? 'blue' : 'default'">
+              {{ data.priority }}
+            </nz-tag>
+          </td>
+          <td>
+            <nz-space>
+              <button *nzSpaceItem nz-button nzType="default" nzShape="circle" (click)="showModal(data)">
+                <i nz-icon nzType="edit"></i>
+              </button>
+              <button
+                *nzSpaceItem
+                nz-button
+                nzType="primary"
+                nzDanger
+                nzShape="circle"
+                nz-popconfirm
+                nzPopconfirmTitle="Are you sure delete this project?"
+                (nzOnConfirm)="deleteProject(data.id)"
+              >
+                <i nz-icon nzType="delete"></i>
+              </button>
+            </nz-space>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+
+  <nz-modal
+    [(nzVisible)]="isVisible"
+    [nzTitle]="isEditMode ? 'Edit Project' : 'Add New Project'"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+  >
+    <ng-container *nzModalContent>
+      <form nz-form [formGroup]="projectForm" layout="vertical">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Project Name</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The project name is required!">
+            <input nz-input formControlName="name" placeholder="Enter project name" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Description</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The description is required!">
+            <input nz-input formControlName="description" placeholder="Enter task description" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Deadline</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select a deadline!">
+            <nz-date-picker formControlName="deadline" style="width: 100%"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Status</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-select formControlName="status">
+              <nz-option nzValue="Active" nzLabel="Active"></nz-option>
+              <nz-option nzValue="Completed" nzLabel="Completed"></nz-option>
+              <nz-option nzValue="On Hold" nzLabel="On Hold"></nz-option>
+              <nz-option nzValue="Cancelled" nzLabel="Cancelled"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Priority</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-select formControlName="priority">
+              <nz-option nzValue="Low" nzLabel="Low"></nz-option>
+              <nz-option nzValue="Medium" nzLabel="Medium"></nz-option>
+              <nz-option nzValue="High" nzLabel="High"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+  </nz-modal>
+</div>

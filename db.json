@@ -1,0 +1,125 @@
+{
+  "users": [
+    {
+      "firstName": "Denisa",
+      "lastName": "Trotuş",
+      "email": "denisa.test@mail.com",
+      "password": "Parola123!",
+      "id": "DoPOiHqKNwU"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Tester",
+      "email": "john@mail.com",
+      "password": "Parola123!",
+      "id": "8GCbhy6iCM4"
+    },
+    {
+      "firstName": "Denisa",
+      "lastName": "Trotuş",
+      "email": "denisa.trotus2005@gmail.com",
+      "password": "Parola123!",
+      "id": "enpwDfqzJdI"
+    },
+    {
+      "firstName": "Denisa",
+      "lastName": "Trotuş",
+      "email": "denisa.trotus2005@test.com",
+      "password": "Parola123!",
+      "id": "fEco5EVn0sk"
+    }
+  ],
+  "projects": [
+    {
+      "name": "frkf",
+      "description": "frnkf",
+      "deadline": "2026-06-03T17:56:24.345Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "8GCbhy6iCM4",
+      "id": "jyM6L6ovyeo"
+    },
+    {
+      "name": "abc2",
+      "description": "fef",
+      "deadline": "2026-06-21T17:56:43.290Z",
+      "status": "Completed",
+      "priority": "High",
+      "id": "rvt1qxkw-EI",
+      "userId": "DoPOiHqKNwU"
+    },
+    {
+      "name": "erf",
+      "description": "fr",
+      "deadline": "2026-06-21T17:57:19.188Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "enpwDfqzJdI",
+      "id": "yEdSnJEust4"
+    },
+    {
+      "name": "abc",
+      "description": "kkk",
+      "deadline": "2026-06-24T18:13:59.058Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "1ZoKQOHV_Ds"
+    },
+    {
+      "name": "Task1",
+      "description": "Denisa",
+      "deadline": "2026-08-15T18:37:24.254Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "WF2Cvxhjhxo"
+    },
+    {
+      "name": "Mimi",
+      "description": "Lulu",
+      "deadline": "2026-05-04T18:37:57.630Z",
+      "status": "Active",
+      "priority": "Low",
+      "id": "GL3SQx2LBsE",
+      "userId": "DoPOiHqKNwU"
+    },
+    {
+      "name": "Bubu",
+      "description": "zuzu",
+      "deadline": "2026-06-24T18:38:17.322Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "ZTsNBBnnw4s"
+    },
+    {
+      "name": "Nunu",
+      "description": "Test",
+      "deadline": "2026-06-21T18:38:31.521Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "te3428UaST0"
+    },
+    {
+      "name": "Zuzu",
+      "description": "mutu",
+      "deadline": "2026-06-21T18:38:54.865Z",
+      "status": "On Hold",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "sgVlpofY9MI"
+    },
+    {
+      "name": "frnjf",
+      "description": "frfrvrv",
+      "deadline": "2026-06-10T18:50:52.173Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "ERivuI6ABA8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

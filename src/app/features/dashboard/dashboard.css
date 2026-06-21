@@ -1,0 +1,128 @@
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-container {
+  padding: 30px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+  animation: slideIn 0.5s ease-out;
+}
+
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+::ng-deep .dashboard-header .ant-card {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(255, 105, 135, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+::ng-deep .dashboard-header .ant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(255, 105, 135, 0.2);
+}
+
+.table-operations {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 15px 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(255, 105, 135, 0.05);
+}
+
+::ng-deep .ant-btn-primary {
+  background: #ff4d85 !important;
+  border-color: #ff4d85 !important;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .ant-btn-primary:hover {
+  background: #ff2a6d !important;
+  border-color: #ff2a6d !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 77, 133, 0.3);
+}
+
+::ng-deep nz-table {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(255, 105, 135, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+::ng-deep .ant-table {
+  background: transparent !important;
+}
+
+::ng-deep .ant-table-thead > tr > th {
+  background: rgba(255, 255, 255, 0.4) !important;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 77, 133, 0.2) !important;
+}
+
+::ng-deep .ant-table-tbody > tr > td {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+  transition: background 0.3s ease;
+}
+
+::ng-deep .ant-table-tbody > tr:hover > td {
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+::ng-deep .ant-modal-content {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 40px rgba(255, 105, 135, 0.2);
+}
+
+::ng-deep .ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 77, 133, 0.2);
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 15px; 
+  }
+
+  .table-operations {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
+  }
+
+  ::ng-deep .table-operations nz-space {
+    width: 100%;
+  }
+
+  ::ng-deep .table-operations .ant-space-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .table-operations button,
+  .table-operations nz-select,
+  .table-operations nz-input-group {
+    width: 100% !important;
+  }
+}

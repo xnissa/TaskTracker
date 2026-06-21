@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+.app-gradient-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 5rem; 
+  margin-bottom: 25px;
+  background: linear-gradient(
+    to right, 
+    #ff2a6d 20%, 
+    #ffffff 50%, 
+    #ff2a6d 80%
+  );
+  background-size: 200% auto;
+  
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  filter: drop-shadow(0px 4px 8px rgba(255, 77, 133, 0.3));
+  
+  animation: shimmerEffect 3s linear infinite;
+}
+
+@keyframes shimmerEffect {
+  to {
+    background-position: 200% center;
+  }
+}

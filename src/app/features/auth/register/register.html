@@ -1,0 +1,70 @@
+<div class="login-container">
+  <form nz-form [formGroup]="registerForm" class="login-form" (ngSubmit)="submitForm()" autocomplete="off">
+    
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your first name!">
+        <nz-input-wrapper nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="firstName" placeholder="First Name" autocomplete="off" />
+        </nz-input-wrapper>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your last name!">
+        <nz-input-wrapper nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="lastName" placeholder="Last Name" autocomplete="off" />
+        </nz-input-wrapper>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="emailErrorTpl">
+        <nz-input-wrapper nzPrefixIcon="user">
+          <input type="email" nz-input formControlName="email" placeholder="Email" autocomplete="off" />
+        </nz-input-wrapper>
+        <ng-template #emailErrorTpl let-control>
+          @if (control.hasError('required')) {
+            Please input your email!
+          } @else if (control.hasError('email')) {
+            The input is not valid E-mail!
+          } @else if (control.hasError('emailExists')) {
+            An account with this email already exists!
+          }
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="passwordErrorTpl">
+        <nz-input-wrapper nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password" autocomplete="new-password" />
+        </nz-input-wrapper>
+        <ng-template #passwordErrorTpl let-control>
+          @if (control.hasError('required')) {
+            Please input your password!
+          } @else if (control.hasError('passwordStrength')) {
+            Password must be min 6 chars, with upper, lower, number and special char.
+          }
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="confirmErrorTpl">
+        <nz-input-wrapper nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" />
+        </nz-input-wrapper>
+        <ng-template #confirmErrorTpl let-control>
+          @if (control.hasError('required')) {
+            Please confirm your password!
+          } @else if (control.hasError('passwordMismatch')) {
+            Passwords do not match!
+          }
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Register</button>
+    Already have an account? <a routerLink="/login">Log in!</a>
+  </form>
+</div>
