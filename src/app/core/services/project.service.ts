@@ -7,8 +7,6 @@ import { Project } from '../interfaces/project.interfaces';
 })
 export class ProjectService {
   private http = inject(HttpClient);
-  
-  // 1. Inițializăm signal-ul cu un array complet GOL
   private projectsSignal = signal<Project[]>([]);
   private apiUrl = 'http://localhost:3000/projects';
 
@@ -16,6 +14,14 @@ export class ProjectService {
 
   activeProjectsCount = computed(() => {
     return this.projectsSignal().filter((p) => p.status === 'Active').length;
+  });
+
+  completedProjectsCount = computed(() => {
+    return this.projectsSignal().filter((p) => p.status === 'Completed').length;
+  });
+
+  totalProjectsCount = computed(() => {
+    return this.projectsSignal().length;
   });
 
   private getUserId(): string | null {
@@ -29,7 +35,7 @@ export class ProjectService {
     if (userId) {
       this.http.get<Project[]>(`${this.apiUrl}?userId=${userId}`).subscribe({
         next: (data) => this.projectsSignal.set(data),
-        error: (err) => console.error('Eroare la preluarea task-urilor', err)
+        error: (err) => console.error('Error fetching projects', err)
       });
     }
   }
@@ -39,7 +45,6 @@ export class ProjectService {
     if (!userId) return;
 
     const newProject = { ...project, userId };
-    
     this.http.post<Project>(this.apiUrl, newProject).subscribe(savedProject => {
       this.projectsSignal.update((projects) => [...projects, savedProject]);
     });

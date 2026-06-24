@@ -18,7 +18,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 
-import { ProjectService } from '../../core/services/project';
+import { ProjectService } from '../../core/services/project.service';
 import { Project } from '../../core/interfaces/project.interfaces';
 import { StatusBadge } from '../../shared/status-badge/status-badge';
 import { Router } from '@angular/router';
@@ -201,6 +201,7 @@ export class Dashboard implements OnInit {
 
   onStatusClick(status: string) {
     console.log('Badge clicked:', status);
+    this.statusFilter.set(status);
   }
 
   sortName(a: Project, b: Project) { return a.name.localeCompare(b.name); }

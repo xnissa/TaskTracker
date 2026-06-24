@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+@font-face{
+  font-family: "Simple Serenity Serif";
+  src: url('/Simple Serenity Serif.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .app-gradient-title {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Simple Serenity Serif", sans-serif;
   font-size: 5rem; 
   margin-bottom: 25px;
   background: linear-gradient(
