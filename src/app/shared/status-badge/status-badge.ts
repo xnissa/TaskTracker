@@ -8,27 +8,36 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
   imports: [CommonModule, NzTagModule],
   template: `
     <nz-tag 
-      [nzColor]="getStatusColor()"
+      [nzColor]="getBadgeColor()"
       (click)="onClick()"
       style="cursor: pointer;">
-      {{ status }}
+      {{ value }}
     </nz-tag>
   `
 })
 export class StatusBadge {
-  @Input() status: string = 'Active';
-  @Output() statusClick = new EventEmitter<string>();
+  @Input() value: string = 'Active';
+  @Input() type: 'status' | 'priority' = 'status';
+  @Output() badgeClick = new EventEmitter<string>();
 
-  getStatusColor(): string {
-    switch(this.status) {
-      case 'Active': return 'green';
-      case 'Completed': return 'blue';
-      case 'On Hold': return 'orange';
-      default: return 'red';
+  getBadgeColor(): string {
+    if (this.type === 'status') {
+      switch(this.value) {
+        case 'Active': return 'green';
+        case 'Completed': return 'blue';
+        case 'On Hold': return 'orange';
+        default: return 'red';
+      }
+    } else {
+      switch(this.value) {
+        case 'High': return 'red';
+        case 'Medium': return 'yellow';
+        default: return 'default';
+      }
     }
   }
 
   onClick() {
-    this.statusClick.emit(this.status);
+    this.badgeClick.emit(this.value);
   }
 }

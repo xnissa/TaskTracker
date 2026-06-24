@@ -167,7 +167,7 @@ export class Dashboard implements OnInit {
         this.projectService.updateProject({
           ...formValue,
           id: this.currentProject.id,
-          userId: this.currentProject.userId // Menține utilizatorul curent alocat
+          userId: this.currentProject.userId 
         });
       } else {
         this.projectService.addProject(formValue);
@@ -202,6 +202,10 @@ export class Dashboard implements OnInit {
   onStatusClick(status: string) {
     console.log('Badge clicked:', status);
     this.statusFilter.set(status);
+  }
+
+  onPriorityClick(priority: string) {
+    this.priorityFilter.set(priority);
   }
 
   sortName(a: Project, b: Project) { return a.name.localeCompare(b.name); }

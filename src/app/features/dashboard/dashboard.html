@@ -97,12 +97,10 @@
             {{ data.deadline | date:'mediumDate' }}
           </td>
           <td>
-            <app-status-badge [status]="data.status" (statusClick)="onStatusClick($event)"></app-status-badge>
+            <app-status-badge [value]="data.status" type="status" (badgeClick)="onStatusClick($event)"></app-status-badge>
           </td>
           <td>
-            <nz-tag [nzColor]="data.priority === 'High' ? 'red' : data.priority === 'Medium' ? 'blue' : 'default'">
-              {{ data.priority }}
-            </nz-tag>
+            <app-status-badge [value]="data.priority" type="priority" (badgeClick)="onPriorityClick($event)"></app-status-badge>
           </td>
           <td>
             <nz-space>

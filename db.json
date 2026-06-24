@@ -31,13 +31,13 @@
   ],
   "projects": [
     {
-      "name": "frkf",
-      "description": "frnkf",
+      "name": "Task 1 John",
+      "description": "go shopping",
       "deadline": "2026-06-03T17:56:24.345Z",
       "status": "Active",
       "priority": "Medium",
-      "userId": "8GCbhy6iCM4",
-      "id": "jyM6L6ovyeo"
+      "id": "jyM6L6ovyeo",
+      "userId": "8GCbhy6iCM4"
     },
     {
       "name": "Family",
@@ -62,7 +62,7 @@
       "description": "finish it",
       "deadline": "2026-06-24T18:13:59.058Z",
       "status": "Active",
-      "priority": "Medium",
+      "priority": "High",
       "id": "1ZoKQOHV_Ds",
       "userId": "DoPOiHqKNwU"
     },
@@ -83,6 +83,33 @@
       "priority": "Medium",
       "userId": "DoPOiHqKNwU",
       "id": "moIz8PgQv0Y"
+    },
+    {
+      "name": "Birou",
+      "description": "de terminat oferta",
+      "deadline": "2026-06-21T21:06:34.094Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "pQxPYq3XUwk"
+    },
+    {
+      "name": "Analize",
+      "description": "alege cand te programezi",
+      "deadline": "2026-06-16T21:10:42.277Z",
+      "status": "Active",
+      "priority": "Medium",
+      "userId": "DoPOiHqKNwU",
+      "id": "WzG5BlRmmnk"
+    },
+    {
+      "name": "Task 2 John",
+      "description": "go gym",
+      "deadline": "2026-06-24T21:23:59.149Z",
+      "status": "Active",
+      "priority": "High",
+      "id": "JEgdqQNa0C4",
+      "userId": "8GCbhy6iCM4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
